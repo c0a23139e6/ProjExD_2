@@ -1,4 +1,5 @@
 import os
+import time
 import random
 import sys
 import pygame as pg
@@ -45,14 +46,25 @@ def main():
     vx , vy = +5, +5 
     clock = pg.time.Clock()
     tmr = 0
+    bo_img = pg.Surface((WIDTH, HEIGHT))
+    pg.Surface.set_alpha(bo_img,200) 
+    pg.draw.rect(bo_img,0,(pg.Rect(0,0,1100, 650)))
+    bo_rct = bo_img.get_rect()
+    fonto = pg.font.Font(None,80)
+    txt = fonto.render("Game Over",True,(255,255,255))
+    
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
         screen.blit(bg_img, [0, 0]) 
         if kk_rct.colliderect(bb_rct):
-            print("GameOver")
-            return 
+            screen.blit(bo_img, [0, 0])
+            screen.blit(txt,[400,300])
+            pg.display.update()
+            time.sleep(5)
+            return
+            
 
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]     # 横、縦
