@@ -50,6 +50,12 @@ def main():
     pg.Surface.set_alpha(bo_img,200) 
     pg.draw.rect(bo_img,0,(pg.Rect(0,0,1100, 650)))
     bo_rct = bo_img.get_rect()
+    kk1_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
+    kk1_rct = kk1_img.get_rect()
+    kk1_rct.center = 350, 325
+    kk2_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
+    kk2_rct = kk2_img.get_rect()
+    kk2_rct.center = 750, 325
     fonto = pg.font.Font(None,80)
     txt = fonto.render("Game Over",True,(255,255,255))
     
@@ -60,6 +66,8 @@ def main():
         screen.blit(bg_img, [0, 0]) 
         if kk_rct.colliderect(bb_rct):
             screen.blit(bo_img, [0, 0])
+            screen.blit(kk1_img,kk1_rct)
+            screen.blit(kk2_img,kk2_rct)
             screen.blit(txt,[400,300])
             pg.display.update()
             time.sleep(5)
